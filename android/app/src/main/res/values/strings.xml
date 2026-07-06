@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Atheer</string>
+    <string name="title_activity_main">Atheer</string>
+    <string name="package_name">com.ccstechnology.atheer</string>
+    <string name="custom_url_scheme">com.ccstechnology.atheer</string>
+</resources>

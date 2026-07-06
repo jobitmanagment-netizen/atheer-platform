@@ -1,0 +1,66 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: atheer
+      POSTGRES_USER: atheer
+      POSTGRES_PASSWORD: atheer
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U atheer"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - redisdata:/data
+    command: redis-server --appendonly yes
+
+  api:
+    build: .
+    ports:
+      - "5173:5173"
+    environment:
+      NODE_ENV: production
+      PORT: 5173
+      PG_HOST: postgres
+      PG_PORT: 5432
+      PG_DB: atheer
+      PG_USER: atheer
+      PG_PASSWORD: atheer
+      PG_SSL: "false"
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+      JWT_SECRET: ${JWT_SECRET:-change-this-to-a-random-secret}
+      JWT_EXPIRY: "900000"
+      REFRESH_EXPIRY: "604800000"
+      CCXT_ENABLED: "true"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_started
+
+  nginx:
+    image: nginx:alpine
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./deploy/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./deploy/ssl:/etc/nginx/ssl:ro
+    depends_on:
+      - api
+
+volumes:
+  pgdata:
+  redisdata:

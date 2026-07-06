@@ -1,0 +1,232 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 220 13% 7%;
+    --foreground: 220 15% 92%;
+    --card: 220 13% 12%;
+    --card-foreground: 220 15% 92%;
+    --popover: 220 13% 10%;
+    --popover-foreground: 220 15% 92%;
+    --primary: 43 87% 50%;
+    --primary-foreground: 220 13% 7%;
+    --secondary: 220 13% 16%;
+    --secondary-foreground: 220 15% 75%;
+    --muted: 220 13% 16%;
+    --muted-foreground: 220 10% 54%;
+    --accent: 220 13% 18%;
+    --accent-foreground: 220 15% 92%;
+    --destructive: 350 72% 50%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 220 13% 18%;
+    --input: 220 13% 16%;
+    --ring: 43 87% 50%;
+    --radius: 0.75rem;
+    --font-heading: 'Inter', ui-sans-serif, system-ui, sans-serif;
+    --font-body: 'Inter', ui-sans-serif, system-ui, sans-serif;
+    --font-display: 'Inter', ui-sans-serif, system-ui, sans-serif;
+    --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+    /* ATHEER Brand Colors */
+    --atheer-bg: #0B0E11;
+    --atheer-card: #1E2329;
+    --atheer-border: #2B3139;
+    --atheer-sidebar: #151A1F;
+    --atheer-gold: #F0B90B;
+    --atheer-text: #EAECEF;
+    --atheer-muted: #848E9C;
+    --atheer-green: #03A66D;
+    --atheer-red: #CF304A;
+    --atheer-trc20: #FF0013;
+    --atheer-eth: #627EEA;
+    --atheer-bnb: #F0B90B;
+    --atheer-poly: #8247E5;
+    --atheer-tron: #FF0013;
+
+    --sidebar-background: 220 13% 10%;
+    --sidebar-foreground: 220 15% 92%;
+    --sidebar-primary: 43 87% 50%;
+    --sidebar-primary-foreground: 220 13% 7%;
+    --sidebar-accent: 220 13% 16%;
+    --sidebar-accent-foreground: 220 15% 92%;
+    --sidebar-border: 220 13% 18%;
+    --sidebar-ring: 43 87% 50%;
+  }
+
+  .dark {
+    --background: 220 13% 7%;
+    --foreground: 220 15% 92%;
+    --card: 220 13% 12%;
+    --card-foreground: 220 15% 92%;
+    --popover: 220 13% 10%;
+    --popover-foreground: 220 15% 92%;
+    --primary: 43 87% 50%;
+    --primary-foreground: 220 13% 7%;
+    --secondary: 220 13% 16%;
+    --secondary-foreground: 220 15% 75%;
+    --muted: 220 13% 16%;
+    --muted-foreground: 220 10% 54%;
+    --accent: 220 13% 18%;
+    --accent-foreground: 220 15% 92%;
+    --destructive: 350 72% 50%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 220 13% 18%;
+    --input: 220 13% 16%;
+    --ring: 43 87% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  html {
+    overscroll-behavior-y: none;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-background text-foreground font-body;
+    background-color: #0B0E11;
+    color: #EAECEF;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overscroll-behavior-y: none;
+    touch-action: manipulation;
+  }
+
+  /* Arabic typography — Tajawal reads far better than Inter for Arabic script */
+  html[dir='rtl'] body {
+    font-family: 'Tajawal', 'Inter', ui-sans-serif, system-ui, sans-serif;
+  }
+
+  /* iOS/Android safe-area helpers */
+  .safe-top    { padding-top:    env(safe-area-inset-top, 0px); }
+  .safe-bottom { padding-bottom: env(safe-area-inset-bottom, 0px); }
+  .safe-left   { padding-left:   env(safe-area-inset-left, 0px); }
+  .safe-right  { padding-right:  env(safe-area-inset-right, 0px); }
+  .safe-top-2  { padding-top:    calc(env(safe-area-inset-top, 0px) + 0.5rem); }
+  .safe-bottom-2 { padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 0.5rem); }
+
+  input[type='number']::-webkit-inner-spin-button,
+  input[type='number']::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  input[type='number'] { -moz-appearance: textfield; }
+
+  select option {
+    background-color: #1E2329;
+    color: #EAECEF;
+  }
+
+  ::-webkit-scrollbar { width: 4px; height: 4px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: #2B3139; border-radius: 4px; }
+  ::-webkit-scrollbar-thumb:hover { background: #F0B90B; }
+}
+
+@layer utilities {
+  .atheer-card {
+    background: #1E2329;
+    border: 1px solid #2B3139;
+    border-radius: 12px;
+  }
+
+  .atheer-glass {
+    background: rgba(30, 35, 41, 0.8);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(240, 185, 11, 0.1);
+  }
+
+  .atheer-gold-glow {
+    box-shadow: 0 0 20px rgba(240, 185, 11, 0.3), 0 0 40px rgba(240, 185, 11, 0.1);
+  }
+
+  .atheer-gold-glow:hover {
+    box-shadow: 0 0 30px rgba(240, 185, 11, 0.5), 0 0 60px rgba(240, 185, 11, 0.2);
+  }
+
+  .gold-gradient {
+    background: linear-gradient(135deg, #F0B90B 0%, #FF9900 100%);
+  }
+
+  .text-gold {
+    color: #F0B90B;
+  }
+
+  .text-atheer-muted {
+    color: #848E9C;
+  }
+
+  .text-atheer-green {
+    color: #03A66D;
+  }
+
+  .text-atheer-red {
+    color: #CF304A;
+  }
+
+  /* Disable text selection on interactive UI chrome for a native-app feel */
+  button,
+  [role="button"],
+  a,
+  nav,
+  .select-none-ui {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-touch-callout: none;
+  }
+
+  /* Keep selection enabled for content the user may need to copy */
+  input, textarea, [contenteditable], code, pre, .font-mono, .allow-select {
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+    user-select: text;
+  }
+}
+
+@keyframes pulse-critical {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+@keyframes ticker {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes countUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-pulse-critical {
+  animation: pulse-critical 1.5s ease-in-out infinite;
+}
+
+.animate-ticker {
+  animation: ticker 30s linear infinite;
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.animate-count-up {
+  animation: countUp 0.4s ease-out forwards;
+}
