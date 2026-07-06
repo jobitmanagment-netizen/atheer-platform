@@ -1,0 +1,11 @@
+{
+  "build": {
+    "builder": "NIXPACKS",
+    "buildCommand": "npm install --omit=dev && npm run build"
+  },
+  "deploy": {
+    "startCommand": "node server/index.mjs",
+    "healthcheckPath": "/api/health",
+    "restartPolicyType": "ON_FAILURE"
+  }
+}
